@@ -11,6 +11,7 @@ Vagrant.configure("2") do |config|
 		v.cpus = 2
 	  end
 
-	  control.vm.provision "shell", path: "scripts/server/entrypoint.sh"
-	end
+	  # K3s e as apps
+    control.vm.provision "shell", path: "scripts/server/entrypoint.sh"
   end
+end
