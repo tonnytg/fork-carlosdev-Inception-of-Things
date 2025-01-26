@@ -22,13 +22,9 @@ sudo cp /var/lib/rancher/k3s/server/node-token /vagrant_data/node-token
 
 echo "K3S Master install finish with success!"
 
-kubectl create deployment app1 --image=nginx --namespace=default
-kubectl expose deployment app1 --type=ClusterIP --port=80 --target-port=80 --namespace=default
-
-kubectl create deployment app2 --image=httpd --replicas=3 --namespace=default
-kubectl expose deployment app2 --type=ClusterIP --port=80 --target-port=80 --namespace=default
-
-kubectl create deployment app3 --image=nginx --namespace=default
-kubectl expose deployment app3 --type=ClusterIP --port=80 --target-port=80 --namespace=default
-
+echo "Start install Apps"
 kubectl apply -f /vagrant_data/ingress.yaml
+kubectl apply -f /vagrant_data/app-one.yaml
+kubectl apply -f /vagrant_data/app-two.yaml
+kubectl apply -f /vagrant_data/app-three.yaml
+echo "Finish install App1 App2 App3"
