@@ -17,4 +17,7 @@ sudo ln -sf /usr/local/bin/kubectl /usr/bin/kubectl
 
 kubectl version --client
 
-echo "K3S Master instalado com sucesso!"
+sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+sudo cp /var/lib/rancher/k3s/server/node-token /vagrant_data/node-token
+
+echo "K3S Master install finish with Success!"
