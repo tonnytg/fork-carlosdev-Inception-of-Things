@@ -20,11 +20,14 @@ kubectl version --client
 sudo chmod 644 /etc/rancher/k3s/k3s.yaml
 sudo cp /var/lib/rancher/k3s/server/node-token /vagrant_data/node-token
 
-echo "K3S Master install finish with success!"
+echo "K3S Master install finish with Success!"
 
-echo "Start install Apps"
-kubectl apply -f /vagrant_data/ingress.yaml
+echo "Install Apps"
+
 kubectl apply -f /vagrant_data/app-one.yaml
 kubectl apply -f /vagrant_data/app-two.yaml
 kubectl apply -f /vagrant_data/app-three.yaml
-echo "Finish install App1 App2 App3"
+kubectl apply -f /vagrant_data/ingress.yaml
+
+echo "Finish Install Apps"
+
