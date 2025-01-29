@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e 
+set -e
 
 MASTER_IP=192.168.56.110
 
@@ -13,7 +13,7 @@ sudo chmod 600 /home/vagrant/.ssh/id_rsa
 sudo chmod 644 /home/vagrant/.ssh/id_rsa.pub
 sudo chown -R vagrant:vagrant /home/vagrant/.ssh
 
-echo "Test connection SSH with Master..."
+echo "Test connection SSH to Master..."
 ssh -i /home/vagrant/.ssh/id_rsa -o StrictHostKeyChecking=no vagrant@$MASTER_IP "echo 'Connection SSH with success!'"
 
 TOKEN=$(ssh -i /home/vagrant/.ssh/id_rsa -o StrictHostKeyChecking=no vagrant@$MASTER_IP "sudo cat /var/lib/rancher/k3s/server/node-token")
@@ -37,5 +37,16 @@ source ~/.bashrc
 
 kubectl get nodes || echo "Error to access cluster!"
 
-echo "✅ K3S Worker connected Master with success!"
+echo "✅ K3S Worker connected with success!"
+
+
+echo "Install Apps"
+
+kubectl apply -f /vagrant_data/ingress.yaml
+kubectl apply -f /vagrant_data/app-one.yaml
+kubectl apply -f /vagrant_data/app-two.yaml
+kubectl apply -f /vagrant_data/app-three.yaml
+
+
+echo "Finish install Apps"
 
