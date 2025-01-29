@@ -49,4 +49,3 @@ kubectl apply -f /vagrant_data/app-three.yaml
 
 
 echo "Finish install Apps"
-

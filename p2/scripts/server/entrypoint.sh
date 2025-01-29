@@ -23,3 +23,11 @@ sudo ufw disable
 
 echo "K3S Master install finish with Success!"
 
+echo "Install Apps"
+
+kubectl apply -f /vagrant_data/app-one.yaml
+kubectl apply -f /vagrant_data/app-two.yaml
+kubectl apply -f /vagrant_data/app-three.yaml
+kubectl apply -f /vagrant_data/ingress.yaml
+
+echo "Finish Install Apps"

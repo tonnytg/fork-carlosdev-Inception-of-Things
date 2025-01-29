@@ -3,25 +3,25 @@ Vagrant.configure("2") do |config|
 
 	config.vm.synced_folder ".", "/vagrant_data"
 
-	# Master (caalbertSW
+	# Master (caalbertSW)
 	config.vm.define "caalbertS" do |control|
 	control.vm.hostname = "caalbertS"
 	control.vm.network "private_network", ip: "192.168.56.110"
 	control.vm.provider "virtualbox" do |v|
-		v.memory = 4096
-		v.cpus = 4
+		v.memory = 2048
+		v.cpus = 2
 	end
 	control.vm.provision "shell", path: "scripts/server/entrypoint.sh"
 	end
 
-	# Worker caalbertSW
+	# Worker (caalbertSW)
 	config.vm.define "caalbertSW" do |control|
 	control.vm.hostname = "caalbertSW"
 	control.vm.network "private_network", ip: "192.168.56.111"
 	control.vm.provider "virtualbox" do |v|
-		v.memory = 4096
-		v.cpus = 4
+		v.memory = 2048
+		v.cpus = 2
 	end
 	control.vm.provision "shell", path: "scripts/worker/entrypoint.sh"
-    end
+	end
 end
