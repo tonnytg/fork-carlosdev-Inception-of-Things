@@ -3,7 +3,7 @@ Vagrant.configure("2") do |config|
 
 	config.vm.synced_folder ".", "/vagrant_data"
 
-	# Master (caalbertSW
+	# Master (caalbertSW)
 	config.vm.define "caalbertS" do |control|
 	control.vm.hostname = "caalbertS"
 	control.vm.network "private_network", ip: "192.168.56.110"
