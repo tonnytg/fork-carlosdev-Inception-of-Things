@@ -12,16 +12,30 @@ chmod 600 /home/vagrant/.ssh/authorized_keys
 
 sudo chown -R vagrant:vagrant /home/vagrant/.ssh
 
+sudo apt-get update -y
+sudo apt-get install -y curl apt-transport-https ca-certificates
+
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --node-ip=192.168.56.110 --tls-san 192.168.56.110" sh -
+
+curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+helm version || { echo "Error to install Helm"; exit 1; }
+
+sudo apt update && sudo apt install -y curl
+
+sudo systemctl stop ufw
+sudo systemctl disable ufw
+
+PRIVATE_IP="192.168.56.110"
+
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--node-ip=${PRIVATE_IP} --bind-address=192.168.56.110 --advertise-address=${PRIVATE_IP} --write-kubeconfig-mode=644" sh - && sleep 10
 
 sudo ln -sf /usr/local/bin/kubectl /usr/bin/kubectl
 
 sudo cp /etc/rancher/k3s/k3s.yaml /vagrant_data/k3s.yaml
 sudo chmod 644 /etc/rancher/k3s/k3s.yaml
 
-sudo ufw disable
-
-echo "K3S Master install finish with Success!"
+echo "K3S Master install finished with success!"
 
 echo "Install Apps"
 

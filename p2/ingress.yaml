@@ -4,9 +4,18 @@ metadata:
   name: web-ingress
   namespace: default
   annotations:
-    kubernetes.io/ingress.class: "traefik"  # Adicionado para garantir o uso do Traefik
+    spec.ingressClassName: "traefik"
 spec:
   rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: app-three
+                port:
+                  number: 80
     - host: app1.com
       http:
         paths:
@@ -37,4 +46,3 @@ spec:
                 name: app-three
                 port:
                   number: 80
-

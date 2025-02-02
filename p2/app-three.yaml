@@ -13,7 +13,7 @@ spec:
         app: app-three
     spec:
       containers:
-      - name: app-three-container
+      - name: app-three
         image: paulbouwer/hello-kubernetes:1.9
         ports:
         - containerPort: 8080
