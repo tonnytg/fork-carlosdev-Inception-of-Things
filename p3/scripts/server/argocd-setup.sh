@@ -26,7 +26,7 @@ sudo mv argocd /usr/local/bin/
 echo "127.0.0.1 argocd.local" | sudo tee -a /etc/hosts
 
 # Config Ingress to Proxy to argocd.local to Service
-kubectl apply -f ingress.yaml -n argocd
+kubectl apply -f traefik-crd-and-ingress.yaml -n argocd
 
 # Waiting apply new settings
 kubectl wait --for=condition=available --timeout=400s -n argocd deployments -l app.kubernetes.io/part-of=argocd
