@@ -7,7 +7,8 @@ metadata:
     spec.ingressClassName: "traefik"
 spec:
   rules:
-    - http:
+    - host:
+      http:
         paths:
           - path: /
             pathType: Prefix
@@ -46,3 +47,4 @@ spec:
                 name: app-three
                 port:
                   number: 80
+
