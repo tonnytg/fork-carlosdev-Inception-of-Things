@@ -13,7 +13,7 @@ spec:
         app: app-one
     spec:
       containers:
-      - name: app-one-container
+      - name: app-one
         image: paulbouwer/hello-kubernetes:1.9
         ports:
         - containerPort: 8080
